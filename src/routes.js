@@ -1,9 +1,19 @@
-const router = require('express').Router();
-const pkg = require('../package.json');
-const { fetchUpstream, pingUpstream, testUpstream } = require('./upstream');
-const { wrap } = require('./utils');
+const _         = require('cleaner-node');
+const router    = require('express').Router();
+const pkg       = require('../package.json');
+const upstream  = require('./upstream');
 
 const BASE_URL = process.env.NODE_BASE ? `/${process.env.NODE_BASE}` : '';
+
+const getStatus = () => ({
+  name  : pkg.name,
+  alias : process.env.NODE_ALIAS || '(not set)',
+  base  : process.env.NODE_BASE || '(not set)',
+  desc  : pkg.description,
+  env   : process.env.NODE_ENV || '(not set)',
+  ver   : pkg.version,
+  date  : (new Date()).toISOString()
+})
 
 router.use((req, res, next) => {
   console.log(JSON.stringify({
@@ -14,70 +24,28 @@ router.use((req, res, next) => {
 });
 
 const sendStatus = async (req, res) => {
-  const env = {};
-  Object.keys(process.env).filter(x => (x && x.trim().toUpperCase() === x)).sort().forEach(key => {
-    env[key] = process.env[key];
-  });
-  const upstream = await pingUpstream();
-
-  res.json({
-    name  : pkg.name,
-    alias : process.env.NODE_ALIAS || '(not set)',
-    base  : process.env.NODE_BASE || '(not set)',
-    desc  : pkg.description,
-    env   : process.env.NODE_ENV || '(not set)',
-    ver   :  pkg.version,
-    date  : (new Date()).toISOString(),
-    upstream,
-    env
-  });
+  const data = getStatus();
+  data.vars = _.vars.getAll();
+  data.tests = await upstream.ping();
+  return res.json(data);
 }
 const testAll = async (req, res) => {
-  const env = {};
-  Object.keys(process.env).filter(x => (x && x.trim().toUpperCase() === x)).sort().forEach(key => {
-    env[key] = process.env[key];
-  });
-  const upstream = await testUpstream();
-
-  res.json({
-    name  : pkg.name,
-    alias : process.env.NODE_ALIAS || '(not set)',
-    desc  : pkg.description,
-    env   : process.env.NODE_ENV || '(not set)',
-    ver   :  pkg.version,
-    date  : (new Date()).toISOString(),
-    upstream,
-    env
-  });
+  const data = getStatus();
+  data.vars = _.vars.getAll();
+  data.tests = await upstream.test();
+  return res.json(data);
+}
+const sendPing = (req, res) => {
+  const data = getStatus();
+  return res.json(data);
 }
 
-router.get(`${BASE_URL}/status`, wrap(sendStatus));
-router.get(`${BASE_URL}/test`, wrap(testAll));
-router.get(`${BASE_URL}/`, (req, res) => {
-  res.json({
-    name  : pkg.name,
-    alias : process.env.NODE_ALIAS || '(not set)',
-    base  : process.env.NODE_BASE || '(not set)',
-    desc  : pkg.description,
-    env   : process.env.NODE_ENV || '(not set)',
-    ver   :  pkg.version,
-    date  : (new Date()).toISOString()
-  });
-});
+router.get(`${BASE_URL}/status`,  _.express.wrap(sendStatus));
+router.get(`${BASE_URL}/test`,    _.express.wrap(testAll));
+router.get(`${BASE_URL}/`,        sendPing);
 
 if (BASE_URL) {
-  router.get(`/`, (req, res) => {
-    res.json({
-      name  : pkg.name,
-      alias : process.env.NODE_ALIAS || '(not set)',
-      base  : process.env.NODE_BASE || '(not set)',
-      desc  : pkg.description,
-      env   : process.env.NODE_ENV || '(not set)',
-      root  : 'non-default root active',
-      ver   :  pkg.version,
-      date  : (new Date()).toISOString(),
-    });
-  });  
+  router.get(`/`, sendPing);  
 }
 
 module.exports = router;
