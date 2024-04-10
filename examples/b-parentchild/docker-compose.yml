@@ -1,0 +1,27 @@
+services:
+
+  COMPLEXAPI_PRIVATE:
+    image: fredlackey/complexapi:0.0.2
+    container_name: complexapi-private
+    environment:
+      - NODE_PORT=3000
+      - NODE_ALIAS=PRIVATE
+    networks:
+      - complexapi-network
+
+  COMPLEXAPI_PUBLIC:
+    image: fredlackey/complexapi:0.0.2
+    container_name: complexapi-public
+    environment:
+      - NODE_ALIAS=PUBLIC
+      - UPSTREAM_PRIVATE=complexapi-private:3000
+    networks:
+      - complexapi-network
+    ports:
+      - "3000:3000"
+    depends_on:
+      - COMPLEXAPI_PRIVATE
+
+networks:
+  complexapi-network:
+    driver: bridge

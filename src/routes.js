@@ -25,13 +25,13 @@ router.use((req, res, next) => {
 
 const sendStatus = async (req, res) => {
   const data = getStatus();
-  data.vars = _.vars.getAll();
+  data.vars = _.getVars();
   data.tests = await upstream.ping();
   return res.json(data);
 }
 const testAll = async (req, res) => {
   const data = getStatus();
-  data.vars = _.vars.getAll();
+  data.vars = _.getVars();
   data.tests = await upstream.test();
   return res.json(data);
 }

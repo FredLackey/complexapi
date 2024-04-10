@@ -1,0 +1,13 @@
+services:
+
+  SINGLE_SERVICE:
+    image: fredlackey/complexapi:0.0.2
+    container_name: complexapi-single
+    ports:
+      - "3000:3000"
+    networks:
+      - complexapi-network
+
+networks:
+  complexapi-network:
+    driver: bridge

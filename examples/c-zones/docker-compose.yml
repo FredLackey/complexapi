@@ -1,0 +1,73 @@
+services:
+
+  # SECURE ZONE --------------------------------------------
+
+  COMPLEXAPI_DB_A:
+    image: fredlackey/complexapi:0.0.2
+    container_name: complexapi-db-a
+    environment:
+      - NODE_ALIAS=DATABASE_A
+    networks:
+      - complexapi-network
+
+  COMPLEXAPI_DB_B:
+    image: fredlackey/complexapi:0.0.2
+    container_name: complexapi-db-b
+    environment:
+      - NODE_ALIAS=DATABASE_B
+    networks:
+      - complexapi-network
+
+  COMPLEXAPI_DB_C:
+    image: fredlackey/complexapi:0.0.2
+    container_name: complexapi-db-c
+    environment:
+      - NODE_ALIAS=DATABASE_C
+    networks:
+      - complexapi-network
+
+  # PRIVATE ZONE -------------------------------------------
+
+  COMPLEXAPI_WEBSERVICE_A:
+    image: fredlackey/complexapi:0.0.2
+    container_name: complexapi-webservice-a
+    environment:
+      - NODE_ALIAS=WEBSERVICE_A
+    networks:
+      - complexapi-network
+
+  COMPLEXAPI_WEBSERVICE_B:
+    image: fredlackey/complexapi:0.0.2
+    container_name: complexapi-webservice-b
+    environment:
+      - NODE_ALIAS=WEBSERVICE_B
+      - UPSTREAM_DB_A=omplexapi-db-a:3000
+      - UPSTREAM_DB_B=omplexapi-db-b:3000
+      - UPSTREAM_DB_C=omplexapi-db-c:3000
+    depends_on:
+      - COMPLEXAPI_DB_A
+      - COMPLEXAPI_DB_B
+      - COMPLEXAPI_DB_C
+    networks:
+      - complexapi-network
+
+  # PUBLIC ZONE --------------------------------------------
+
+  COMPLEXAPI_UI:
+    image: fredlackey/complexapi:0.0.2
+    container_name: complexapi-ui
+    environment:
+      - NODE_ALIAS=UI
+      - UPSTREAM_WEBSERVICE_A=complexapi-webservice-a:3000
+      - UPSTREAM_WEBSERVICE_B=complexapi-webservice-b:3000
+    networks:
+      - complexapi-network
+    ports:
+      - "3000:3000"
+    depends_on:
+      - COMPLEXAPI_WEBSERVICE_A
+      - COMPLEXAPI_WEBSERVICE_B
+
+networks:
+  complexapi-network:
+    driver: bridge

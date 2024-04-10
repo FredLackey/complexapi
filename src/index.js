@@ -1,5 +1,3 @@
-require('dotenv').config();
-
 const express = require('express');
 const pkg     = require('../package.json');
 const routes  = require('./routes');

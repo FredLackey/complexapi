@@ -1,11 +1,12 @@
 {
   "name"       : "complex-api-example",
-  "version"    : "0.0.1",
+  "version"    : "0.0.2",
   "description": "Complex API Example",
   "main"       : "src/index.js",
   "scripts"    : {
-    "start": "node ./src/index.js",
-    
+
+    "start"       : "node ./src/index.js",
+
     "simple:a"    : "NODE_PORT=3001 NODE_ALIAS=A node ./src/index.js",
     "simple:b"    : "NODE_PORT=3002 NODE_ALIAS=B node ./src/index.js",
     "simple"      : "UPSTREAM_A=localhost:3001 UPSTREAM_B=localhost:3002 node ./src/index.js",
@@ -21,9 +22,9 @@
     "complex:b:a" : "NODE_PORT=3021 NODE_BASE=ba NODE_ALIAS=BA node ./src/index.js",
     "complex:b:b" : "NODE_PORT=3022 NODE_BASE=bb NODE_ALIAS=BB node ./src/index.js",
     "complex:b"   : "NODE_PORT=3020 NODE_BASE=b NODE_ALIAS=B UPSTREAM_BA=localhost:3021/ba UPSTREAM_BB=localhost:3022/bb  node ./src/index.js",
+    "complex"     : "NODE_PORT=3030 UPSTREAM_A=localhost:3010/a/status UPSTREAM_B=localhost:3020/b/status  node ./src/index.js",
 
-    "complex"     : "NODE_PORT=3030 UPSTREAM_A=localhost:3010/a/status UPSTREAM_B=localhost:3020/b/status  node ./src/index.js"
-
+    "go:simple"   : "concurrently 'npm run simple:a' 'npm run simple:b' 'npm run simple'"
   },
   "keywords": [],
   "author"  : {
@@ -33,9 +34,10 @@
   },
   "license"     : "Apache-2.0",
   "dependencies": {
-    "cleaner-node": "^0.18.3",
-    "dotenv"      : "^16.0.0",
-    "express"     : "^4.18.1",
-    "node-fetch"  : "^2.x.x"
+    "cleaner-node": "^1.0.24",
+    "express": "^4.19.2"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
   }
 }
