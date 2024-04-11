@@ -1,0 +1,31 @@
+{
+  "name" : "complex-api-example",
+  "alias": "PUBLIC",
+  "base" : "(not set)",
+  "desc" : "Complex API Example",
+  "env"  : "production",
+  "ver"  : "0.0.2",
+  "date" : "2024-04-11T07:20:02.629Z",
+  "vars" : {
+    "HOME"            : "/home/node",
+    "HOSTNAME"        : "d2525c513cbe",
+    "NODE_ALIAS"      : "PUBLIC",
+    "NODE_ENV"        : "production",
+    "NODE_VERSION"    : "18.19.1",
+    "PATH"            : "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+    "PWD"             : "/home/node/app",
+    "UPSTREAM_PRIVATE": "complexapi-private:3000",
+    "YARN_VERSION"    : "1.22.19"
+  },
+  "tests": {
+    "PRIVATE": {
+      "name" : "complex-api-example",
+      "alias": "PRIVATE",
+      "base" : "(not set)",
+      "desc" : "Complex API Example",
+      "env"  : "production",
+      "ver"  : "0.0.2",
+      "date" : "2024-04-11T07:20:02.670Z"
+    }
+  }
+}

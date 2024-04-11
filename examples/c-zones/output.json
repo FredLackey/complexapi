@@ -1,0 +1,41 @@
+{
+  "name" : "complex-api-example",
+  "alias": "UI",
+  "base" : "(not set)",
+  "desc" : "Complex API Example",
+  "env"  : "production",
+  "ver"  : "0.0.2",
+  "date" : "2024-04-10T11:54:01.751Z",
+  "vars" : {
+    "HOME"                 : "/home/node",
+    "HOSTNAME"             : "04cca596f4c6",
+    "NODE_ALIAS"           : "UI",
+    "NODE_ENV"             : "production",
+    "NODE_VERSION"         : "18.19.1",
+    "PATH"                 : "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+    "PWD"                  : "/home/node/app",
+    "UPSTREAM_WEBSERVICE_A": "complexapi-webservice-a:3000",
+    "UPSTREAM_WEBSERVICE_B": "complexapi-webservice-b:3000",
+    "YARN_VERSION"         : "1.22.19"
+  },
+  "tests": {
+    "WEBSERVICE_A": {
+      "name" : "complex-api-example",
+      "alias": "WEBSERVICE_A",
+      "base" : "(not set)",
+      "desc" : "Complex API Example",
+      "env"  : "production",
+      "ver"  : "0.0.2",
+      "date" : "2024-04-10T11:54:01.754Z"
+    },
+    "WEBSERVICE_B": {
+      "name" : "complex-api-example",
+      "alias": "WEBSERVICE_B",
+      "base" : "(not set)",
+      "desc" : "Complex API Example",
+      "env"  : "production",
+      "ver"  : "0.0.2",
+      "date" : "2024-04-10T11:54:01.761Z"
+    }
+  }
+}

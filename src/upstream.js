@@ -1,11 +1,10 @@
-const _     = require('cleaner-node');
-const fetch = require('node-fetch');
+const _ = require('cleaner-node');
 
 const PREFIX = 'UPSTREAM_';
 
 const toUrl = value => {
-  let url = _.strings.removePrefix(value, '/');
-      url = _.strings.removeSuffix(url, '/');
+  let url = _.removePrefix(value, '/');
+      url = _.removeSuffix(url, '/');
   return url.startsWith('http') 
     ? url
     : `http://${url}`;

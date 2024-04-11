@@ -1,0 +1,19 @@
+{
+  "name" : "complex-api-example",
+  "alias": "(not set)",
+  "base" : "(not set)",
+  "desc" : "Complex API Example",
+  "env"  : "production",
+  "ver"  : "0.0.2",
+  "date" : "2024-04-11T07:16:27.413Z",
+  "vars" : {
+    "HOME"        : "/home/node",
+    "HOSTNAME"    : "18acc4934cff",
+    "NODE_ENV"    : "production",
+    "NODE_VERSION": "18.19.1",
+    "PATH"        : "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+    "PWD"         : "/home/node/app",
+    "YARN_VERSION": "1.22.19"
+  },
+  "tests": null
+}
