@@ -1,11 +1,11 @@
-# Example B: Parent-Child Services  
+# Example C: Security Zones  
 
-This example shows a public-private scenario Shows how to use a single instance in a Docker environment.
+This example shows a more complex exmample of dependent services using three common zones; Secure, Private, and Public.
 
 ## Usage  
 
 ```bash
 git clone https://github.com/FredLackey/complexapi.git
-cd ./complexapi/examples/b-parentchild
+cd ./complexapi/examples/c-zones
 docker compose up
 ```  

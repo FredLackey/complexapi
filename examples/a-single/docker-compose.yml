@@ -1,7 +1,7 @@
 services:
 
   SINGLE_SERVICE:
-    image: fredlackey/complexapi:0.0.2
+    image: fredlackey/complexapi:0.0.3
     container_name: complexapi-single
     ports:
       - "3000:3000"

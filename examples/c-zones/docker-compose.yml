@@ -3,7 +3,7 @@ services:
   # SECURE ZONE --------------------------------------------
 
   COMPLEXAPI_DB_A:
-    image: fredlackey/complexapi:0.0.2
+    image: fredlackey/complexapi:0.0.3
     container_name: complexapi-db-a
     environment:
       - NODE_ALIAS=DATABASE_A
@@ -11,7 +11,7 @@ services:
       - complexapi-network
 
   COMPLEXAPI_DB_B:
-    image: fredlackey/complexapi:0.0.2
+    image: fredlackey/complexapi:0.0.3
     container_name: complexapi-db-b
     environment:
       - NODE_ALIAS=DATABASE_B
@@ -19,7 +19,7 @@ services:
       - complexapi-network
 
   COMPLEXAPI_DB_C:
-    image: fredlackey/complexapi:0.0.2
+    image: fredlackey/complexapi:0.0.3
     container_name: complexapi-db-c
     environment:
       - NODE_ALIAS=DATABASE_C
@@ -29,7 +29,7 @@ services:
   # PRIVATE ZONE -------------------------------------------
 
   COMPLEXAPI_WEBSERVICE_A:
-    image: fredlackey/complexapi:0.0.2
+    image: fredlackey/complexapi:0.0.3
     container_name: complexapi-webservice-a
     environment:
       - NODE_ALIAS=WEBSERVICE_A
@@ -37,7 +37,7 @@ services:
       - complexapi-network
 
   COMPLEXAPI_WEBSERVICE_B:
-    image: fredlackey/complexapi:0.0.2
+    image: fredlackey/complexapi:0.0.3
     container_name: complexapi-webservice-b
     environment:
       - NODE_ALIAS=WEBSERVICE_B
@@ -54,7 +54,7 @@ services:
   # PUBLIC ZONE --------------------------------------------
 
   COMPLEXAPI_UI:
-    image: fredlackey/complexapi:0.0.2
+    image: fredlackey/complexapi:0.0.3
     container_name: complexapi-ui
     environment:
       - NODE_ALIAS=UI
