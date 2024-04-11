@@ -1,6 +1,10 @@
-# complexapi  
+# Complex API (`complexapi`)  
 
-Simple Node API to help with the design of more complex patterns
+Simple Node API to help with prototyping and scaffolding service layers as well as training.
+
+## Background  
+
+From time to time I need to carve out the infrastructure prior to beginning a project.  This means setting up CICD pipelines, accounts within AWS, Azure, or GCP, and then creating the scaffolding for the service layer.  This project acts as a placeholder for the various microservices within each zone.  By deploying `complexapi` I can quickly create a "hello world" structure, to ensure the back end is in place, before starting work.  As I develop each service, I can replace the `complexapi` placeholder with the actual service.
 
 ## Default Routes  
 
