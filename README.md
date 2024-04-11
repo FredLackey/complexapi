@@ -46,15 +46,15 @@ The following environment variables are available:
 
 The source code from Git contains three example scenarios.
 
-### Parent-Child Example [`examples/c-zones`](./examples/c-zones)
+### Simple Example [`examples/a-single`](./examples/a-single)
 
-The first is a very simple example that uses two instances; one parent and one child.
+The first is a very simple example that show how to stand up a simple version of the service.
 
-#### Executing the example
+#### Execution
 
 ```bash
 git clone https://github.com/FredLackey/complexapi.git
-cd ./complexapi/examples/c-zones
+cd ./complexapi/examples/a-single
 docker compose up
 ```  
 
@@ -73,6 +73,74 @@ services:
 
 networks:
   complexapi-network:
+    drive
+```
+
+#### Output
+
+```json
+{
+  "name" : "complex-api-example",
+  "alias": "(not set)",
+  "base" : "(not set)",
+  "desc" : "Complex API Example",
+  "env"  : "production",
+  "ver"  : "0.0.2",
+  "date" : "2024-04-11T07:16:27.413Z",
+  "vars" : {
+    "HOME"        : "/home/node",
+    "HOSTNAME"    : "18acc4934cff",
+    "NODE_ENV"    : "production",
+    "NODE_VERSION": "18.19.1",
+    "PATH"        : "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+    "PWD"         : "/home/node/app",
+    "YARN_VERSION": "1.22.19"
+  },
+  "tests": null
+}
+```
+
+### Parent-Child Example [`examples/b-parentchild`](./examples/b-parentchild)
+
+The second example combines two instances; one parent and one child.
+
+#### Executing the example
+
+```bash
+git clone https://github.com/FredLackey/complexapi.git
+cd ./complexapi/examples/b-parentchild
+docker compose up
+```  
+
+#### Docker Compose File
+
+```yaml
+services:
+
+  COMPLEXAPI_PRIVATE:
+    image: fredlackey/complexapi:0.0.2
+    container_name: complexapi-private
+    environment:
+      - NODE_PORT=3000
+      - NODE_ALIAS=PRIVATE
+    networks:
+      - complexapi-network
+
+  COMPLEXAPI_PUBLIC:
+    image: fredlackey/complexapi:0.0.2
+    container_name: complexapi-public
+    environment:
+      - NODE_ALIAS=PUBLIC
+      - UPSTREAM_PRIVATE=complexapi-private:3000
+    networks:
+      - complexapi-network
+    ports:
+      - "3000:3000"
+    depends_on:
+      - COMPLEXAPI_PRIVATE
+
+networks:
+  complexapi-network:
     driver: bridge
 ```
 
@@ -82,34 +150,48 @@ Output from a GET call to `http://localhost:3000/test`.  Note the calls to the t
 
 ```json
 {
-  "name": "complex-api-example",
+  "name" : "complex-api-example",
   "alias": "PUBLIC",
-  "base": "(not set)",
-  "desc": "Complex API Example",
-  "env": "production",
-  "ver": "0.0.2",
-  "date": "2024-04-10T11:12:45.194Z",
-  "vars": {
-    "HOME": "/home/node",
-    "HOSTNAME": "ce213a5df633",
-    "NODE_ALIAS": "PUBLIC",
-    "NODE_ENV": "production",
-    "NODE_VERSION": "18.19.1",
-    "PATH": "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
-    "PWD": "/home/node/app",
+  "base" : "(not set)",
+  "desc" : "Complex API Example",
+  "env"  : "production",
+  "ver"  : "0.0.2",
+  "date" : "2024-04-11T07:20:02.629Z",
+  "vars" : {
+    "HOME"            : "/home/node",
+    "HOSTNAME"        : "d2525c513cbe",
+    "NODE_ALIAS"      : "PUBLIC",
+    "NODE_ENV"        : "production",
+    "NODE_VERSION"    : "18.19.1",
+    "PATH"            : "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+    "PWD"             : "/home/node/app",
     "UPSTREAM_PRIVATE": "complexapi-private:3000",
-    "YARN_VERSION": "1.22.19"
+    "YARN_VERSION"    : "1.22.19"
   },
   "tests": {
     "PRIVATE": {
-      "name": "complex-api-example",
+      "name" : "complex-api-example",
       "alias": "PRIVATE",
-      "base": "(not set)",
-      "desc": "Complex API Example",
-      "env": "production",
-      "ver": "0.0.2",
-      "date": "2024-04-10T11:12:45.235Z"
+      "base" : "(not set)",
+      "desc" : "Complex API Example",
+      "env"  : "production",
+      "ver"  : "0.0.2",
+      "date" : "2024-04-11T07:20:02.670Z"
     }
   }
 }
+
 ```
+
+### Additional Samples  
+
+Other samples exist within the [`examples`](./examples/) directory.  Please feel free to explore them.  They are too numerous to list here.
+
+## Contact Iinfo
+
+Please feel free to reach out if I can help in any way.
+
+**Fred Lackey**  
+[fred.lackey@gmail.com](mailto:fred.lackey@gmail.com)  
+[https://fredlackey.com](https://fredlackey.com)  
+
