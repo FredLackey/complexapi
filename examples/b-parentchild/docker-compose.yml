@@ -1,7 +1,7 @@
 services:
 
   COMPLEXAPI_PRIVATE:
-    image: fredlackey/complexapi:0.0.2
+    image: fredlackey/complexapi:0.0.3
     container_name: complexapi-private
     environment:
       - NODE_PORT=3000
@@ -10,7 +10,7 @@ services:
       - complexapi-network
 
   COMPLEXAPI_PUBLIC:
-    image: fredlackey/complexapi:0.0.2
+    image: fredlackey/complexapi:0.0.3
     container_name: complexapi-public
     environment:
       - NODE_ALIAS=PUBLIC

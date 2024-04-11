@@ -4,7 +4,7 @@
   "base" : "(not set)",
   "desc" : "Complex API Example",
   "env"  : "production",
-  "ver"  : "0.0.2",
+  "ver"  : "0.0.3",
   "date" : "2024-04-11T07:20:02.629Z",
   "vars" : {
     "HOME"            : "/home/node",
@@ -24,7 +24,7 @@
       "base" : "(not set)",
       "desc" : "Complex API Example",
       "env"  : "production",
-      "ver"  : "0.0.2",
+      "ver"  : "0.0.3",
       "date" : "2024-04-11T07:20:02.670Z"
     }
   }

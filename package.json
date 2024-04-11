@@ -1,6 +1,6 @@
 {
   "name"       : "complex-api-example",
-  "version"    : "0.0.2",
+  "version"    : "0.0.3",
   "description": "Complex API Example",
   "main"       : "src/index.js",
   "scripts"    : {

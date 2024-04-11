@@ -68,7 +68,7 @@ docker compose up
 services:
 
   SINGLE_SERVICE:
-    image: fredlackey/complexapi:0.0.2
+    image: fredlackey/complexapi:0.0.3
     container_name: complexapi-single
     ports:
       - "3000:3000"
@@ -89,7 +89,7 @@ networks:
   "base" : "(not set)",
   "desc" : "Complex API Example",
   "env"  : "production",
-  "ver"  : "0.0.2",
+  "ver"  : "0.0.3",
   "date" : "2024-04-11T07:16:27.413Z",
   "vars" : {
     "HOME"        : "/home/node",
@@ -122,7 +122,7 @@ docker compose up
 services:
 
   COMPLEXAPI_PRIVATE:
-    image: fredlackey/complexapi:0.0.2
+    image: fredlackey/complexapi:0.0.3
     container_name: complexapi-private
     environment:
       - NODE_PORT=3000
@@ -131,7 +131,7 @@ services:
       - complexapi-network
 
   COMPLEXAPI_PUBLIC:
-    image: fredlackey/complexapi:0.0.2
+    image: fredlackey/complexapi:0.0.3
     container_name: complexapi-public
     environment:
       - NODE_ALIAS=PUBLIC
@@ -159,7 +159,7 @@ Output from a GET call to `http://localhost:3000/test`.  Note the calls to the t
   "base" : "(not set)",
   "desc" : "Complex API Example",
   "env"  : "production",
-  "ver"  : "0.0.2",
+  "ver"  : "0.0.3",
   "date" : "2024-04-11T07:20:02.629Z",
   "vars" : {
     "HOME"            : "/home/node",
@@ -179,7 +179,7 @@ Output from a GET call to `http://localhost:3000/test`.  Note the calls to the t
       "base" : "(not set)",
       "desc" : "Complex API Example",
       "env"  : "production",
-      "ver"  : "0.0.2",
+      "ver"  : "0.0.3",
       "date" : "2024-04-11T07:20:02.670Z"
     }
   }
