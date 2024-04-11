@@ -46,7 +46,7 @@ The following environment variables are available:
 
 The source code from Git contains three example scenarios.
 
-### A : Parent-Child Example  
+### Parent-Child Example [`examples/c-zones`](./examples/c-zones)
 
 The first is a very simple example that uses two instances; one parent and one child.
 
@@ -54,7 +54,7 @@ The first is a very simple example that uses two instances; one parent and one c
 
 ```bash
 git clone https://github.com/FredLackey/complexapi.git
-cd ./complexapi/examples/a-single
+cd ./complexapi/examples/c-zones
 docker compose up
 ```  
 
@@ -79,27 +79,6 @@ networks:
 #### Output
 
 Output from a GET call to `http://localhost:3000/test`.  Note the calls to the the upstream service using its alias as the output payload:
-
-```json
-{
-  "name": "complex-api-example",
-  "alias": "PUBLIC",
-  "base": "(not set)",
-  "desc": "Complex API Example",
-  "env": "production",
-  "ver": "0.0.2",
-  "date": "2024-04-10T11:12:45.194Z",
-  "vars": {
-    "HOME": "/home/node",
-    "HOSTNAME": "ce213a5df633",
-    "NODE_ALIAS": "PUBLIC",
-    "NODE_ENV": "production",
-    "NODE_VERSION": "18.19.1",
-    "PATH": "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
-    "PWD": "/home/node/app",
-    "YARN_VERSION": "1.22.19"
-  }
-}
 
 ```json
 {
