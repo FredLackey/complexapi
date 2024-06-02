@@ -1,6 +1,6 @@
 {
   "name"       : "complex-api-example",
-  "version"    : "0.0.3",
+  "version"    : "0.0.4",
   "description": "Complex API Example",
   "main"       : "src/index.js",
   "scripts"    : {
@@ -34,7 +34,7 @@
   },
   "license"     : "Apache-2.0",
   "dependencies": {
-    "cleaner-node": "^1.0.24",
+    "cleaner-node": "^1.0.33",
     "express"     : "^4.19.2"
   },
   "devDependencies": {
